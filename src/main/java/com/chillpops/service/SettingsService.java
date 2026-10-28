@@ -73,6 +73,7 @@ public class SettingsService {
         }
         try {
             Path targetDir = Paths.get(uploadDir).toAbsolutePath();
+            System.out.println("UPLOAD DIRECTORY: " + targetDir);
             if (!Files.exists(targetDir)) {
                 Files.createDirectories(targetDir);
             }
@@ -84,6 +85,8 @@ public class SettingsService {
             String fileName = "qr_" + UUID.randomUUID().toString().substring(0, 8) + extension;
             Path filePath = targetDir.resolve(fileName);
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("QR FILE EXISTS: " + Files.exists(filePath));
+System.out.println("QR FILE PATH: " + filePath);
             String path = "/uploads/" + fileName;
 
             // Also update the shop setting automatically
