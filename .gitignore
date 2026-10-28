@@ -1,0 +1,9 @@
+@"
+target/
+uploads/
+.env
+*.log
+.idea/
+.vscode/
+*.class
+"@ | Set-Content .gitignore
