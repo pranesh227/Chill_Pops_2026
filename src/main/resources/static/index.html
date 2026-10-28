@@ -716,23 +716,22 @@
           <form onsubmit="event.preventDefault(); app.submitLogin();">
             <div class="mb-3">
               <label class="form-label small fw-bold">Admin Username</label>
-              <input type="text" id="login-username" class="form-control rounded-pill" value="admin" required>
+              <input type="text" id="login-username"
+       class="form-control rounded-pill"
+       placeholder="Enter Admin Username"
+       autocomplete="username" required>
             </div>
             <div class="mb-3">
               <label class="form-label small fw-bold">Security Password</label>
-              <input type="password" id="login-password" class="form-control rounded-pill" value="admin123" required>
+              <input type="password" id="login-password"
+       class="form-control rounded-pill"
+       placeholder="Enter Security Password"
+       autocomplete="current-password" required>
             </div>
             <button type="submit" class="btn btn-primary rounded-pill w-100 fw-bold py-2 shadow-sm">
               <i class="fa-solid fa-arrow-right-to-bracket me-1"></i> Sign In to Portal
             </button>
           </form>
-
-          <div class="mt-3 text-center">
-            <button class="btn btn-sm btn-link text-muted text-decoration-none small" onclick="app.fillDemoAdmin()">
-              <i class="fa-solid fa-bolt me-1 text-warning"></i> Auto-Fill Default Credentials (admin / admin123)
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   </div>
