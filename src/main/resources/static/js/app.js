@@ -640,7 +640,14 @@ const app = {
 console.log("QR PATH:", this.settings.qrImagePath);
 console.log("MODAL:", this.modals.upi);
 
-    this.modals.upi.show();
+    console.log("BEFORE MODAL SHOW");
+
+this.modals.upi.show();
+
+console.log(
+    "MODAL SHOW STATUS:",
+    document.getElementById("modal-upi").classList.contains("show")
+);
   },
 
   closeUpiModal() {
