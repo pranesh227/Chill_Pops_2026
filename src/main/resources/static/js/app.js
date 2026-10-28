@@ -635,6 +635,9 @@ const app = {
     } else {
       qrImg.src = `/api/billing/qr/${bill.id}?t=${Date.now()}`;
     }
+    console.log("UPI FUNCTION REACHED");
+console.log("QR PATH:", this.settings.qrImagePath);
+console.log("MODAL:", this.modals.upi);
 
     this.modals.upi.show();
   },
