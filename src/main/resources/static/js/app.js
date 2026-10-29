@@ -237,9 +237,34 @@ const app = {
     if (previewLbl) {
       previewLbl.innerText = this.settings.upiId || "No UPI ID configured";
     }
-
+    this.generateUpiPreview();
     this.toggleGstInput();
   },
+  generateUpiPreview() {
+    const upiId = document.getElementById("setting-upi-id").value.trim();
+    const previewImg = document.getElementById("setting-qr-preview");
+    const previewLbl = document.getElementById("preview-upi-id-lbl");
+
+    if (previewLbl) {
+        previewLbl.innerText = upiId || "Enter UPI ID";
+    }
+
+    if (!upiId || !upiId.includes("@")) {
+        previewImg.src = "/images/logo.svg";
+        return;
+    }
+
+    const upiName =
+        document.getElementById("setting-upi-name").value.trim()
+        || "Chill Pops";
+
+    const upiLink =
+        `upi://pay?pa=${encodeURIComponent(upiId)}` +
+        `&pn=${encodeURIComponent(upiName)}`;
+
+    previewImg.src =
+        `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiLink)}`;
+},
 
   toggleGstInput() {
     const isChecked = document.getElementById("setting-gst-enabled").checked;

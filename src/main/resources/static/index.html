@@ -603,13 +603,21 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label class="form-label fw-bold small">Franchise UPI ID / VPA <span class="text-danger">*</span></label>
-                <input type="text" id="setting-upi-id" class="form-control rounded-pill" placeholder="e.g. chillpops@oksbi">
+                <input type="text" id="setting-upi-id"
+       class="form-control rounded-pill"
+       placeholder="e.g. chillpops@oksbi"
+       oninput="app.generateUpiPreview()">
                 <div class="form-text small">QR codes will automatically route customer settlements to this UPI ID.</div>
               </div>
 
               <div class="mb-3">
                 <label class="form-label fw-bold small">Account Display Name</label>
-                <input type="text" id="setting-upi-name" class="form-control rounded-pill" placeholder="e.g. Chill Pops Franchise">
+                <input
+  type="text"
+  id="setting-upi-name"
+  class="form-control rounded-pill"
+  placeholder="e.g. Chill Pops Franchise"
+  oninput="app.generateUpiPreview()">
               </div>
 
               <div class="mb-3">
