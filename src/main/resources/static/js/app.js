@@ -633,9 +633,8 @@ const app = {
       this.activeBill = await res.json();
       const method = document.querySelector('input[name="paymentMethod"]:checked').value;
 
-    //  if (method === "UPI") {
-    // alert("UPI selected successfully!");
-    // this.openUpiModal(this.activeBill);
+     if (method === "UPI") {
+    this.openUpiModal(this.activeBill);
 }else {
         // Direct cash payment prompt
         if (confirm(`Confirm CASH payment receipt of ₹${parseFloat(this.activeBill.grandTotal).toFixed(2)} for ${this.activeBill.invoiceNumber}?`)) {
