@@ -21,3 +21,22 @@
     width: 100% !important;
     min-height: 100px !important;
 }
+
+/* Ice Cream Product Image Layout */
+.product-img-wrap {
+    width: 100%;
+    height: 200px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #f8fafc;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
