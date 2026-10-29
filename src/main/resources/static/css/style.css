@@ -1,42 +1,95 @@
-/* UPI Modal visibility fix */
-#modal-upi {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    z-index: 1055 !important;
+/* CHILL POPS — Premium Berry UI
+   Complete custom CSS for the existing Bootstrap 5 HTML.
+   Existing HTML IDs, JS handlers, QR generation and billing logic are unchanged. */
+
+:root {
+  --cp-berry:#b4234d; --cp-berry-dark:#8f183b; --cp-berry-soft:#fff0f3;
+  --cp-cream:#fffaf4; --cp-ink:#29232c; --cp-muted:#817781; --cp-line:#eee4e8;
+  --cp-shadow-sm:0 4px 14px rgba(55,24,36,.06); --cp-shadow-md:0 12px 32px rgba(55,24,36,.10);
+  --cp-radius:16px; --cp-font:'Plus Jakarta Sans','Inter',system-ui,-apple-system,sans-serif;
+  --primary:var(--cp-berry); --primary-hover:var(--cp-berry-dark); --primary-subtle:var(--cp-berry-soft);
+  --primary-light:#fff6f7; --primary-border:#f3c5d0;
+  --slate-950:#211b24; --slate-900:#2a2430; --slate-800:#3b3441; --slate-700:#514956;
+  --slate-600:#6c6470; --slate-500:#817984; --slate-400:#a59da6; --slate-300:#d8cfd4;
+  --slate-200:#e9e1e5; --slate-100:#f5eff1; --slate-50:#fffafc; --white:#fff;
+  --ice-accent:#3983a8; --ice-hover:#286b8e; --ice-subtle:#eaf5fa; --ice-border:#cce5f0;
+  --success:#16845b; --success-subtle:#eaf7f0; --success-border:#bce5cf;
+  --warning:#b7791f; --warning-subtle:#fff7e7; --warning-border:#f2dfb5;
+  --danger:#c53b4d; --danger-subtle:#fff0f1; --danger-border:#f3c8ce;
+  --font-sans:var(--cp-font); --shadow-xs:0 1px 3px rgba(40,20,30,.05);
+  --shadow-sm:var(--cp-shadow-sm); --shadow-md:var(--cp-shadow-md); --shadow-lg:0 22px 55px rgba(55,24,36,.14);
+  --shadow-xl:var(--shadow-lg); --radius-sm:8px; --radius-md:12px; --radius-lg:18px; --radius-xl:24px; --radius-full:999px;
 }
 
-#modal-upi .modal-dialog {
-    display: flex !important;
-    width: calc(100% - 2rem) !important;
-    max-width: 420px !important;
-    min-height: 100px !important;
-    margin: 1.75rem auto !important;
-}
+/* Base */
+*,*::before,*::after{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;color:var(--cp-ink);background:radial-gradient(circle at 8% 8%,rgba(255,225,232,.42),transparent 27rem),linear-gradient(180deg,#fffdfb,#fff9f7);font-family:var(--cp-font);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%} a{color:inherit;text-decoration:none} button,input,select,textarea{font:inherit} button{ -webkit-tap-highlight-color:transparent }
+h1,h2,h3,h4,h5,h6{color:var(--cp-ink);font-family:var(--cp-font);font-weight:800;letter-spacing:-.035em}
+::selection{color:var(--cp-berry-dark);background:#ffe0e8}.font-tabular{font-variant-numeric:tabular-nums}
 
-#modal-upi .modal-content {
-    width: 100% !important;
-    min-height: 100px !important;
-}
+/* Navigation */
+.top-navbar{position:sticky;top:0;z-index:1020;padding:12px 0;background:rgba(255,255,255,.93);border-bottom:1px solid rgba(232,216,222,.85);box-shadow:0 5px 22px rgba(60,25,40,.045);backdrop-filter:blur(16px)}
+.navbar-brand-wrap{display:inline-flex;align-items:center;gap:12px;min-width:0}.brand-logo-img{width:auto;height:46px;max-width:180px;object-fit:contain}
+.nav-pill-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:42px;padding:9px 16px;color:#655b65;background:transparent;border:1px solid transparent;border-radius:999px;font-size:.84rem;font-weight:750;white-space:nowrap;cursor:pointer;transition:all .2s ease}
+.nav-pill-btn:hover{color:var(--cp-berry);background:var(--cp-berry-soft);border-color:#f8dce3;transform:translateY(-1px)}
+.nav-pill-btn.active{color:#fff;background:linear-gradient(135deg,var(--cp-berry),#cf4268);border-color:transparent;box-shadow:0 7px 17px rgba(180,35,77,.22)}
+.nav-pill-btn.active i{color:#fff!important}.admin-badge{display:inline-flex;align-items:center;padding:7px 12px;color:#286b50;background:#eef9f2;border:1px solid #d3eddd;border-radius:999px;font-size:.74rem;font-weight:800}
 
-/* Ice Cream Product Image Layout */
-.product-img-wrap {
-    width: 100%;
-    height: 200px;
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: #f8fafc;
-}
+/* Hero */
+.hero-banner{position:relative;overflow:hidden;padding:clamp(30px,4vw,54px) 0;background:radial-gradient(circle at 85% 10%,rgba(255,255,255,.75),transparent 17rem),linear-gradient(115deg,#fff0f3 0%,#fff8f1 52%,#fdf1e8 100%);border-bottom:1px solid #f2e3e5}
+.hero-banner::after{content:"";position:absolute;right:-85px;bottom:-190px;width:360px;height:360px;border:1px solid rgba(180,35,77,.09);border-radius:50%;box-shadow:0 0 0 34px rgba(180,35,77,.025),0 0 0 70px rgba(180,35,77,.018);pointer-events:none}
+.hero-banner .row{position:relative;z-index:1}.hero-tagline-badge{display:inline-flex;align-items:center;gap:7px;margin-bottom:15px;padding:7px 14px;color:var(--cp-berry);background:rgba(255,255,255,.78);border:1px solid #f1cbd5;border-radius:999px;font-size:.76rem;font-weight:800}
+.hero-heading{margin:0 0 12px;color:#2d2029;font-size:clamp(2rem,4vw,3.25rem);font-weight:850;line-height:1.12;letter-spacing:-.055em}
+.hero-heading span{color:var(--cp-berry);background:linear-gradient(90deg,#a91e49,#dc6682);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-support-text{max-width:700px;color:#71636b;font-size:1rem;line-height:1.8}.hero-stats-panel{padding:20px 22px;background:rgba(255,255,255,.86);border:1px solid #fff;border-radius:22px;box-shadow:var(--cp-shadow-md);backdrop-filter:blur(10px)}
+.hero-stat-item{display:flex;align-items:center;gap:13px}.hero-stat-icon{display:grid;flex:0 0 42px;width:42px;height:42px;place-items:center;border-radius:13px;background:var(--cp-berry-soft);color:var(--cp-berry);font-size:1.05rem}
 
-.product-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
+/* Content, search and controls */
+main.container-fluid{width:100%;max-width:1600px}.search-bar-group{overflow:hidden;border:1px solid #eadfe3;border-radius:999px;background:#fff;box-shadow:var(--cp-shadow-sm)}
+.search-bar-group .input-group-text{border:0!important;background:#fff!important}.search-bar-group .form-control{border:0!important;box-shadow:none!important}
+.form-control,.form-select{min-height:42px;color:var(--cp-ink);background:#fff;border:1px solid #e6dce1;border-radius:12px;font-family:var(--cp-font);font-size:.86rem;box-shadow:0 1px 2px rgba(40,20,30,.025)}
+.form-control::placeholder{color:#aaa0a7}.form-control:focus,.form-select:focus{color:var(--cp-ink);background:#fff;border-color:#d98299;box-shadow:0 0 0 4px rgba(180,35,77,.10)}
+.form-label{color:#554b55}.form-text{color:#8a8088!important}
+.category-pills-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:18px}
+.cat-filter-btn{padding:8px 15px;color:#655b64;background:#fff;border:1px solid #e9dfe3;border-radius:999px;box-shadow:0 2px 6px rgba(45,25,35,.035);font-size:.78rem;font-weight:750;cursor:pointer;transition:all .18s ease}
+.cat-filter-btn:hover{color:var(--cp-berry);background:#fff5f7;border-color:#edc1ce;transform:translateY(-1px)}.cat-filter-btn.active{color:#fff;background:linear-gradient(135deg,var(--cp-berry),#cf4268);border-color:var(--cp-berry);box-shadow:0 5px 13px rgba(180,35,77,.18)}
+
+/* Main catalogue product cards */
+#products-grid,#pos-products-grid{align-items:stretch}#products-grid>[class*="col-"],#pos-products-grid>[class*="col-"]{display:flex}
+.stick-product-card{position:relative;display:flex;flex-direction:column;width:100%;min-width:0;height:100%;overflow:hidden;color:var(--cp-ink);background:#fff;border:1px solid #eee4e8;border-radius:19px;box-shadow:var(--cp-shadow-sm);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+#products-grid .stick-product-card:hover{transform:translateY(-5px);border-color:#efc4d0;box-shadow:0 17px 34px rgba(90,28,50,.12)}
+.product-img-wrap{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:205px;min-height:205px;padding:17px;overflow:hidden;background:radial-gradient(circle at 50% 48%,#fff 0%,#fff 43%,transparent 75%),linear-gradient(145deg,#fff8f6,#f9f1ed);border-bottom:1px solid #f3e9ec}
+.product-img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 8px 8px rgba(45,25,35,.10));transition:transform .25s ease}
+.stick-product-card:hover .product-img{transform:scale(1.045)}
+.category-tag,.stick-only-tag{position:absolute;z-index:1;top:11px;display:inline-flex;align-items:center;max-width:44%;overflow:hidden;padding:5px 9px;border-radius:999px;font-size:.63rem;font-weight:850;letter-spacing:.035em;text-overflow:ellipsis;white-space:nowrap}
+.category-tag{left:11px;color:#795264;background:rgba(255,255,255,.92);border:1px solid #f0dce3}.stick-only-tag{right:11px;color:#95651d;background:#fff7e8;border:1px solid #f4dfb5}
+.product-card-body{display:flex;flex:1;flex-direction:column;justify-content:space-between;gap:12px;padding:16px}.product-title{margin:0 0 6px;color:#302630;font-size:.98rem;font-weight:850;line-height:1.4;letter-spacing:-.025em}
+.product-desc{display:-webkit-box;min-height:2.5em;margin:0;overflow:hidden;color:#827781;font-size:.77rem;line-height:1.55;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.product-price-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:12px;border-top:1px solid #f1e9ec}.product-price{color:var(--cp-berry);font-size:1.12rem;font-weight:900;letter-spacing:-.03em}
+.add-cart-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:36px;padding:7px 13px;color:#fff;background:linear-gradient(135deg,var(--cp-berry),#d24a70);border:0;border-radius:999px;box-shadow:0 5px 12px rgba(180,35,77,.18);font-size:.76rem;font-weight:850;cursor:pointer;transition:all .18s ease}
+.add-cart-btn:hover{background:var(--cp-berry-dark);transform:translateY(-1px);box-shadow:0 8px 16px rgba(180,35,77,.24)}
+
+/* POS */
+.pos-layout{display:grid;grid-template-columns:minmax(0,1fr) 370px;align-items:start;gap:22px}.pos-products-area{min-width:0}
+.pos-cart-panel{position:sticky;top:88px;min-width:0;padding:20px;background:#fff;border:1px solid #eee2e7;border-radius:22px;box-shadow:var(--cp-shadow-md)}
+.pos-cart-panel>.d-flex:first-child{border-color:#f0e7eb!important}.cart-items-list{max-height:390px;overflow-y:auto;margin:14px 0;padding:0 4px 0 0}.cart-items-list:empty{min-height:105px}
+.cart-item-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid #f1e9ec}.cart-item-info{flex:1;min-width:0}.cart-item-title{color:#352b35;font-size:.82rem;font-weight:800}.cart-item-sub{color:#91858e;font-size:.72rem}
+.cart-qty-stepper{display:inline-flex;align-items:center;gap:7px;padding:4px 6px;background:#faf4f6;border-radius:9px}.stepper-btn{display:inline-grid;width:25px;height:25px;place-items:center;color:var(--cp-berry);background:#fff;border:1px solid #efdce2;border-radius:7px;font-weight:850;cursor:pointer}.stepper-btn:hover{color:#fff;background:var(--cp-berry);border-color:var(--cp-berry)}
+.cart-summary-box{padding:15px;background:linear-gradient(145deg,#fff8f6,#fff2f4);border:1px solid #f2dce3;border-radius:14px}.summary-line{display:flex;justify-content:space-between;gap:10px;margin-bottom:7px;color:#776b75;font-size:.8rem}.summary-line strong{color:#3b303a}
+.summary-line.grand-total{margin:11px 0 0;padding-top:11px;color:#302630;border-top:1px solid #ebd8df;font-size:1rem;font-weight:850}.summary-line.grand-total span:last-child{color:var(--cp-berry)!important;font-size:1.3rem;font-weight:900}
+.payment-selector{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0}.payment-btn-radio{position:absolute;opacity:0;pointer-events:none}
+.payment-btn-label{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:9px;color:#6b606b;background:#fff;border:1px solid #e9dfe4;border-radius:12px;font-size:.8rem;font-weight:800;cursor:pointer;transition:all .18s ease}
+.payment-btn-radio:checked+.payment-btn-label{color:var(--cp-berry);background:var(--cp-berry-soft);border-color:#e5a9ba;box-shadow:inset 0 0 0 1px #e5a9ba}
+.btn-checkout{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;min-height:48px;padding:12px 16px;color:#fff;background:linear-gradient(135deg,#a91d48,#d64b70);border:0;border-radius:13px;box-shadow:0 8px 18px rgba(180,35,77,.22);font-size:.88rem;font-weight:850;cursor:pointer;transition:all .2s ease}
+.btn-checkout:hover{background:linear-gradient(135deg,#8f183b,#bd315a);transform:translateY(-2px);box-shadow:0 12px 22px rgba(180,35,77,.27)}.btn-checkout:disabled{opacity:.6;cursor:wait;transform:none}
+#pos-products-grid .stick-product-card{padding:12px!important;text-align:center;cursor:pointer}#pos-products-grid .stick-product-card img{display:block;width:100%;height:88px!important;margin:0 auto 9px;object-fit:contain;object-position:center}
+#pos-products-grid .stick-product-card:hover{border-color:#e9b6c5;box-shadow:var(--cp-shadow-md);transform:translateY(-2px)}#pos-products-grid .stick-product-card .text-truncate{color:#403540;font-size:.75rem;font-weight:800!important}#pos-products-grid .stick-product-card .text-primary{color:var(--cp-berry)!important}
+
+/* Admin */
+.admin-sidebar-nav{padding:10px;background:#fff;border:1px solid #eee2e7;border-radius:16px;box-shadow:var(--cp-shadow-sm)}
+.admin-nav-item{display:inline-flex;align-items:center;gap:8px;min-height:39px;padding:8px 12px;color:#716672;background:transparent;border:0;border-radius:10px;font-size:.76rem;font-weight:800;cursor:pointer;transition:all .18s ease}
+.admin-nav-item:hover{color:var(--cp-berry);background:#fff3f6}.admin-nav-item.active{color:var(--cp-berry);background:var(--cp-berry-soft)}
+.metric-card{display:flex;align-items:center;gap:12px;height:100%;min-height:98px;padding:15px;background:#fff;border:1px solid #eee4e8;border-radius:16px;box-shadow:var(--cp-shadow-sm);transition:transform .18s ease,box-shadow .18s ease}
+.metric-card:hover{transform:translateY(-2px);box-shadow:var(--cp-shadow-md)}.metric-icon-wrap{display:grid;flex:0 0 42px;width:42px;height:42px;place-items:center;border-radius:13px;font-size:1.05rem}
+.metric-val{color:#302630;font-size:1.28rem;font-weight:900;line-height:1.25;letter-spacing:-.04em}.metric-lbl{margin-top:4px;color:#8a7e88;font-size:.63rem;font-weight:850;letter-spacing:.055em;text-transform:uppercase}
