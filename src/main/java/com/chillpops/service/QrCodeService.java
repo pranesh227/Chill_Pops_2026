@@ -21,8 +21,12 @@ public class QrCodeService {
         String encodedPayee = URLEncoder.encode(cleanPayee, StandardCharsets.UTF_8).replace("+", "%20");
         String note = URLEncoder.encode("Order " + invoiceNumber, StandardCharsets.UTF_8).replace("+", "%20");
 
-        String upiPayload = String.format("upi://pay?pa=%s&pn=%s&am=%s&tr=%s&tn=%s&cu=INR",
-                upiId, encodedPayee, amount, invoiceNumber, note);
+        String encodedUpiId = URLEncoder.encode(upiId, StandardCharsets.UTF_8);
+
+String upiPayload = String.format(
+        "upi://pay?pa=%s&pn=%s&am=%s&tr=%s&tn=%s&cu=INR",
+        encodedUpiId, encodedPayee, amount, invoiceNumber, note
+);
 
         QRCodeWriter writer = new QRCodeWriter();
         Map<EncodeHintType, Object> hints = new HashMap<>();

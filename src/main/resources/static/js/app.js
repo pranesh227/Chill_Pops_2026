@@ -624,30 +624,37 @@ const app = {
     }
   },
 
-  openUpiModal(bill) {
-    document.getElementById("upi-modal-inv").innerText = bill.invoiceNumber;
-    document.getElementById("upi-modal-amount").innerText = `₹${parseFloat(bill.grandTotal).toFixed(2)}`;
-    document.getElementById("upi-modal-vpa").innerText = this.settings.upiId;
+    openUpiModal(bill) {
+    // Display invoice number
+    document.getElementById("upi-modal-inv").innerText =
+      bill.invoiceNumber;
 
-    // Use custom uploaded QR if set, otherwise fetch dynamic NPCI QR
+    // Display bill amount
+    document.getElementById("upi-modal-amount").innerText =
+      `₹${parseFloat(bill.grandTotal).toFixed(2)}`;
+
+    // Display UPI ID
+    document.getElementById("upi-modal-vpa").innerText =
+      this.settings.upiId || "";
+
+    // Generate dynamic QR with bill amount
     const qrImg = document.getElementById("upi-modal-qr-img");
-    if (this.settings.qrImagePath) {
-      qrImg.src = this.settings.qrImagePath;
-    } else {
+
+    if (qrImg) {
       qrImg.src = `/api/billing/qr/${bill.id}?t=${Date.now()}`;
     }
-    console.log("UPI FUNCTION REACHED");
-console.log("QR PATH:", this.settings.qrImagePath);
-console.log("MODAL:", this.modals.upi);
 
-    console.log("BEFORE MODAL SHOW");
+    // Hide login modal if already open
+    if (this.modals.login?._isShown) {
+      this.modals.login.hide();
+    }
 
-this.modals.upi.show();
-
-console.log(
-    "MODAL SHOW STATUS:",
-    document.getElementById("modal-upi").classList.contains("show")
-);
+    // Show UPI modal
+    if (this.modals.upi) {
+      this.modals.upi.show();
+    } else {
+      console.error("UPI modal is not initialized!");
+    }
   },
 
   closeUpiModal() {
